@@ -40,4 +40,16 @@ public class ProductController {
         byte[] image = service.getProductImage(name);
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.IMAGE_JPEG).body(image);
     }
+
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<Product>> getProductByCategory(@PathVariable("category") String category) {
+        List<Product> products = service.getProductByCategory(category);
+        return ResponseEntity.status(HttpStatus.OK).body(products);
+    }
+
+    @GetMapping("/brand/{brand}")
+    public ResponseEntity<List<Product>> getProductByBrand(@PathVariable("brand") String brand) {
+        List<Product> products = service.getProductByBrand(brand);
+        return ResponseEntity.status(HttpStatus.OK).body(products);
+    }
 }

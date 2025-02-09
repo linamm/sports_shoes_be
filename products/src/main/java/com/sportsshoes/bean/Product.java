@@ -17,6 +17,10 @@ public class Product {
     private Double price;
     private String imagePath;
 
+    public Product() {
+        // You can leave this empty or initialize some default values
+    }
+
     public Product(String name, String description, String brand, String category, Double price, String imagePath) {
         this.name = name;
         this.description = description;

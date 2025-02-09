@@ -43,6 +43,14 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> getProductByCategory(String category) {
+        return productRepository.findByCategory(category);
+    }
+
+    public List<Product> getProductByBrand(String brand) {
+        return productRepository.findByBrand(brand);
+    }
+
     public byte[] getProductImage(String name) throws IOException {
         File imageFile = new File(FOLDER_PATH + "/" + name);
 
