@@ -60,4 +60,16 @@ public class ProductService {
 
         return Files.readAllBytes(imageFile.toPath());
     }
+
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).orElse(null);
+    }
+
+    public Product saveProduct(Product existingProduct) {
+        return productRepository.save(existingProduct);
+    }
+
+    public void deleteProduct(Product existingProduct) {
+        productRepository.delete(existingProduct);
+    }
 }

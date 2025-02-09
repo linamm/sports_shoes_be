@@ -52,4 +52,45 @@ public class ProductController {
         List<Product> products = service.getProductByBrand(brand);
         return ResponseEntity.status(HttpStatus.OK).body(products);
     }
+
+    // Update Product API
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@PathVariable("id") Long id, @RequestBody Product productDetails) {
+        // Retrieve the existing product by ID
+        Product existingProduct = service.getProductById(id);
+
+        // If the product is not found, return a 404 response
+        if (existingProduct == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Update the existing product's fields with new data
+        existingProduct.setName(productDetails.getName());
+        existingProduct.setPrice(productDetails.getPrice());
+        existingProduct.setCategory(productDetails.getCategory());
+        existingProduct.setDescription(productDetails.getDescription());
+
+        // Save the updated product
+        Product updatedProduct = service.saveProduct(existingProduct);
+
+        // Return the updated product with status 200 OK
+        return ResponseEntity.ok(updatedProduct);
+    }
+
+    // Delete Product API
+    public ResponseEntity<Product> deleteProduct(@PathVariable("id") Long id) {
+        // Retrieve the existing product by ID
+        Product existingProduct = service.getProductById(id);
+
+        // If the product is not found, return a 404 response
+        if (existingProduct == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Delete the existing product
+        service.deleteProduct(existingProduct);
+
+        // Return a 200 response
+        return ResponseEntity.ok().build();
+    }
 }
