@@ -38,6 +38,6 @@ public class ProductController {
     @GetMapping("/image/{name}")
     public ResponseEntity<byte[]> getProductImage(@PathVariable("name") String name) throws IOException {
         byte[] image = service.getProductImage(name);
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.IMAGE_PNG).body(image);
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.IMAGE_JPEG).body(image);
     }
 }

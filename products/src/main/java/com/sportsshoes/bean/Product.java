@@ -11,19 +11,18 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String brand;
-    private Double price;
-    private String category;
     private String description;
+    private String brand;
+    private String category;
+    private Double price;
     private String imagePath;
 
-    public Product(Long id, String name, String brand, Double price, String category, String description, String imagePath) {
-        this.id = id;
+    public Product(String name, String description, String brand, String category, Double price, String imagePath) {
         this.name = name;
-        this.brand = brand;
-        this.price = price;
-        this.category = category;
         this.description = description;
+        this.brand = brand;
+        this.category = category;
+        this.price = price;
         this.imagePath = imagePath;
     }
 
@@ -74,7 +73,6 @@ public class Product {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
-
 
 
     public Long getId() {
