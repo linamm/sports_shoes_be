@@ -21,10 +21,11 @@ public class ProductController {
     private ProductService service;
 
 
-    @PostMapping("/add")               //from the request hitting this controller get the data on the identifiers
+    @PostMapping("/add")
     public ResponseEntity<String> addProduct(@RequestParam("name") String name, @RequestParam("description") String description,
+                                             @RequestParam("brand") String brand, @RequestParam("price") double price, @RequestParam("category") String category,
                                              @RequestParam("image")MultipartFile file) throws IOException {
-        String response= service.addProduct(name,description,file);
+        String response= service.addProduct(name, description, brand, price, category, file);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

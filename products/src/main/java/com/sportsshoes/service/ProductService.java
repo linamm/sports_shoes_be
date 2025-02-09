@@ -18,7 +18,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public String addProduct(String  name, String description, MultipartFile file) throws IOException {
+    public String addProduct(String  name, String description, String brand, double price, String category, MultipartFile file) throws IOException {
 
         File directory = new File(FOLDER_PATH);
 
