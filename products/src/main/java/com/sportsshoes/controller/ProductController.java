@@ -77,6 +77,7 @@ public class ProductController {
         return ResponseEntity.ok(updatedProduct);
     }
 
+    @DeleteMapping("/{id}")
     // Delete Product API
     public ResponseEntity<Product> deleteProduct(@PathVariable("id") Long id) {
         // Retrieve the existing product by ID

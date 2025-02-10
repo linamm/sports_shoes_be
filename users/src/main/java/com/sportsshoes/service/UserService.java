@@ -34,4 +34,17 @@ public class UserService {
         }
         return "Invalid Credentials";
     }
+
+    public User getUserById(String id) {
+        return userRepository.findById(Long.parseLong(id)).orElse(null);
+    }
+
+    public String updateUser(User existingUser) {
+        userRepository.save(existingUser);
+        return "User updated successfully";
+    }
+
+    public void deleteUser(User existingUser) {
+        userRepository.delete(existingUser);
+    }
 }
