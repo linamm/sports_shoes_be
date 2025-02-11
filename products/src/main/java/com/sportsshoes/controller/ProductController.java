@@ -2,6 +2,7 @@ package com.sportsshoes.controller;
 
 
 import com.sportsshoes.bean.Product;
+import com.sportsshoes.exceptions.ResourceNotFoundException;
 import com.sportsshoes.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,8 @@ public class ProductController {
     @PostMapping("/add")
     public ResponseEntity<String> addProduct(@RequestParam("name") String name, @RequestParam("description") String description,
                                              @RequestParam("brand") String brand, @RequestParam("price") double price, @RequestParam("category") String category,
-                                             @RequestParam("image")MultipartFile file) throws IOException {
-        String response= service.addProduct(name, description, brand, price, category, file);
+                                             @RequestParam("quantity") int quantity, @RequestParam("image")MultipartFile file) throws IOException {
+        String response= service.addProduct(name, description, brand, price, category, quantity, file);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
@@ -77,15 +78,15 @@ public class ProductController {
         return ResponseEntity.ok(updatedProduct);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("delete/{id}")
     // Delete Product API
-    public ResponseEntity<Product> deleteProduct(@PathVariable("id") Long id) {
+    public ResponseEntity<Product> deleteProduct(@PathVariable("id") Long id) throws ResourceNotFoundException {
         // Retrieve the existing product by ID
         Product existingProduct = service.getProductById(id);
 
         // If the product is not found, return a 404 response
         if (existingProduct == null) {
-            return ResponseEntity.notFound().build();
+           throw new ResourceNotFoundException("Product not found with id: " + id);
         }
 
         // Delete the existing product
@@ -94,4 +95,6 @@ public class ProductController {
         // Return a 200 response
         return ResponseEntity.ok().build();
     }
+
+
 }

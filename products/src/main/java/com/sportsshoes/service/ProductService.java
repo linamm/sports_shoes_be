@@ -18,7 +18,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public String addProduct(String  name, String description, String brand, Double price, String category, MultipartFile file) throws IOException {
+    public String addProduct(String  name, String description, String brand, Double price, String category, Integer quantity, MultipartFile file) throws IOException {
 
         File directory = new File(FOLDER_PATH);
 
@@ -29,7 +29,7 @@ public class ProductService {
         File destinationFile = new File(directory, file.getOriginalFilename());
         file.transferTo(destinationFile);
 
-        Product product=new Product(name, description, brand, category, price, file.getOriginalFilename());
+        Product product=new Product(name, description, brand, category, price, quantity, file.getOriginalFilename());
         product.setName(name);
         product.setDescription(description);
         product.setImagePath(file.getOriginalFilename());

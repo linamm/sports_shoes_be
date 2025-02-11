@@ -16,18 +16,23 @@ public class Product {
     private String category;
     private Double price;
     private String imagePath;
+    private Integer quantity;
 
     public Product() {
         // You can leave this empty or initialize some default values
     }
 
-    public Product(String name, String description, String brand, String category, Double price, String imagePath) {
+    public Product(String name, String description, String brand, String category, Double price, Integer quantity, String imagePath) {
         this.name = name;
         this.description = description;
         this.brand = brand;
         this.category = category;
         this.price = price;
         this.imagePath = imagePath;
+        this.quantity = quantity;
+    }
+
+    public Product(long l, String testProduct, String testDescription, String testBrand, double v, String electronics, int i, Object o) {
     }
 
     public Double getPrice() {
@@ -87,4 +92,11 @@ public class Product {
         this.id = id;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 }
