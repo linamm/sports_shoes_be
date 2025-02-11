@@ -4,7 +4,6 @@ import com.sportsshoes.bean.User;
 import com.sportsshoes.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
